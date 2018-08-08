@@ -1,13 +1,18 @@
 <template>
-  <section>سناریوساز</section>
+  <b-container fluid>
+    <header-part></header-part>
+  </b-container>
 </template>
 
 <script>
-export default {
+import HeaderPart from '../components/header'
 
+export default {
+  components: {
+    HeaderPart
+  }
 }
 </script>
 
 <style>
-
 </style>
