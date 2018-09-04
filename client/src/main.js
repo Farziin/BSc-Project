@@ -8,9 +8,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import {sync} from 'vuex-router-sync'
 import store from './store/index'
+import VueKonva from 'vue-konva'
+import vueHeadful from 'vue-headful'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+Vue.use(VueKonva)
+Vue.component('vue-headful', vueHeadful)
 
 sync(store, router)
 
@@ -20,4 +24,9 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
 })

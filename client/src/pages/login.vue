@@ -49,7 +49,6 @@ export default {
         .then(function (response) {
           console.log(response.data.result.token)
           if (response.data.code !== 200) {
-            console.log('CANNOT LOGIN!')
             self.errorText = 'نام کاربری یا رمز عبور نادرست می‌باشد.'
             self.dismissCountDown = self.dismissSecs
           } else {
@@ -59,9 +58,9 @@ export default {
           }
         })
         .catch(function (err) {
-          console.log('FAILED TO LOGIN!')
           self.errorText = 'لطفا دوباره تلاش نمایید؛ خطا در ارتباط با سرور به وجود آمده است.'
           console.log('LOGIN ERROR: ' + err)
+          self.dismissCountDown = self.dismissSecs
         })
     },
     countDownChanged (dismissCountDown) {

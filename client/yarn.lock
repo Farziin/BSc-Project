@@ -3527,6 +3527,10 @@ he@1.1.x, he@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
+headful@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/headful/-/headful-1.0.3.tgz#420936f6184358a0613b5f73f1c5b5c91a251895"
+
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -4620,6 +4624,10 @@ kind-of@^5.0.0:
 kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
+
+konva@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-2.2.1.tgz#ce9241f4eb418d30c62641e904f767e8c81093e7"
 
 last-call-webpack-plugin@^2.1.2:
   version "2.1.2"
@@ -7718,6 +7726,12 @@ vue-functional-data-merge@^2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-2.0.6.tgz#f08055adfb92458debcf2ad10c3aa712277f7fc2"
 
+vue-headful@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-headful/-/vue-headful-2.0.1.tgz#43876d62d5c21804bbde72f8a89b55cac1026d63"
+  dependencies:
+    headful "^1.0.3"
+
 vue-hot-reload-api@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
@@ -7736,6 +7750,13 @@ vue-jest@^1.0.2:
     source-map "^0.5.6"
     tsconfig "^7.0.0"
     vue-template-es2015-compiler "^1.5.3"
+
+vue-konva@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vue-konva/-/vue-konva-1.0.6.tgz#e427658d6be862f03ee3f3ff3664c84826004f07"
+  dependencies:
+    vue "^2.5.2"
+    vue-router "^3.0.1"
 
 vue-loader@^13.3.0:
   version "13.7.2"
