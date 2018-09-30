@@ -20,7 +20,7 @@
             <p>
               برای شروع فرآیند کشیدن و تعریف سناریو ابتدا وارد سایت شوید و سپس، سناریوی جدیدی را ایجاد و یه به ویرایش سناریوهای پیشین بپردازید.
             </p>
-            <b-button href="#" variant="primary">{{ btnText }}</b-button>
+            <b-button href="#/login" variant="primary">{{ btnText }}</b-button>
           </div>
         </b-card>
       </b-col>
@@ -40,6 +40,9 @@ export default {
     return {
       btnText: 'ورود'
     }
+  },
+  mounted: function () {
+
   }
 }
 </script>

@@ -3,11 +3,10 @@
     <vue-headful title="ایجاد سناریو"/>
     <header-part></header-part>
     <br class="empty-space"/>
-    <scenario-name :name.sync="scenarioName" v-if="pageNumber === 1"></scenario-name>
+    <!-- define scenario name -->
+    <!-- <scenario-name :name.sync="scenarioName" v-if="pageNumber === 1"></scenario-name> -->
 
-    <!-- things table part -->
-      <!-- because couldn't passing selected things to parent -->
-      <!-- define it here -->
+    <!-- see and select things that available in platform -->
     <b-container v-if="pageNumber === 2">
       <b-table striped hover :items="things" :fields="thingsFields"></b-table>
       <b-form-group label="لطفاً اشیاء موردنظر خود را از لیست زیر و با توجه به اطلاعات فوق تکمیل انتخاب کنید:">
@@ -17,17 +16,25 @@
       </b-form-group>
     </b-container>
 
-    <draw-scenario v-if="pageNumber === 3"></draw-scenario>
+    <b-container v-if="pageNumber === 3">
+      <p>تعداد حالت‌هایی که می‌خواهید سناریوی شما داشته باشد را وارد نمایید:</p>
+      <b-form-input v-model="stateNumber"
+                  type="number"
+                  placeholder="تعداد حالت‌های سناریو را مشخص نمایید"></b-form-input>
+    </b-container>
+
+    <!-- drawing scenario -->
+    <draw-scenario v-if="pageNumber === 4" :stateNumber="stateNumber"></draw-scenario>
 
     <br class="empty-space"/>
     <!-- page navigation buttons -->
-    <b-row align-h="center">
+    <b-row align-h="center" v-if="pageNumber <= 3">
       <b-button-group>
         <b-button variant="info" class="pageination-btn"
           v-if="pageNumber > 1" @click="prevStep">مرحله قبلی</b-button>
         <b-button variant="primary" class="pageination-btn" disabled>مرحله {{ pageNumber }}</b-button>
         <b-button variant="info" class="pageination-btn"
-        v-if="pageNumber < 3" @click="nextStep">مرحله بعدی</b-button>
+        v-if="pageNumber < 4" @click="nextStep">مرحله بعدی</b-button>
       </b-button-group>
     </b-row>
     <br/>
@@ -37,20 +44,21 @@
 
 <script>
 import HeaderPart from '../components/header'
-import ScenarioName from '../components/scenario-name'
+// import ScenarioName from '../components/scenario-name'
 import DrawScenario from '../components/draw-scenario'
-import api from '../services/api'
+import platformAPI from '../services/platform_api'
 
 export default {
   components: {
     HeaderPart,
-    ScenarioName,
+    // ScenarioName,
     DrawScenario
   },
   data () {
     return {
-      pageNumber: 3,
+      pageNumber: 1,
       scenarioName: '',
+      stateNumber: 1,
       // things' table data fields
       things: [],
       selectedThings: [],
@@ -80,7 +88,7 @@ export default {
   },
   created: function () {
     var self = this
-    api().get('things', {headers: {Authorization: 'Bearer ' + self.$store.state.token}})
+    platformAPI().get('things', {headers: {Authorization: 'Bearer ' + self.$store.state.token}})
       .then(function (response) {
         console.log(response.data.result.things)
         self.things = response.data.result.things

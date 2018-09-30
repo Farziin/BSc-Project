@@ -16,12 +16,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "js-cookie": "^2.2.0",
     "konva": "^2.2.1",
+    "module": "^1.2.5",
+    "mongodb": "^3.1.4",
     "vue": "^2.5.2",
     "vue-headful": "^2.0.1",
     "vue-konva": "^1.0.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4",
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {

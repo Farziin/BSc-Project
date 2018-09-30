@@ -43,7 +43,7 @@ export default {
       // if (this.$store.state.token === null) {
       //   this.modalShow = true
       // } else {
-      this.$router.push('/add-scenario')
+      this.$router.push('/scenario-name')
       // }
       // TODO
     }

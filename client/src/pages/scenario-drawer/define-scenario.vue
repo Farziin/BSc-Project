@@ -1,6 +1,8 @@
 <template>
   <b-container fluid>
-    <p v-if="inputShow === false">برای تغییر شروط و اعمال، روی مؤلفه موردنظر دو بار کلیک کنید.</p>
+    <br/>
+    <h4 v-if="inputShow === false">برای تغییر شروط و اعمال، روی مؤلفه موردنظر دو بار کلیک کنید.</h4>
+    <br/>
     <b-container v-if="inputShow">
       <b-form-textarea id="textarea1"
                           v-model="inputText"
@@ -41,12 +43,15 @@
         </v-group>
       </v-layer>
     </v-stage>
+    <br/>
+    <b-btn @click="goNextStep" variant="primary">مرحله بعد</b-btn>
+    <br/>
+    <br/>
   </b-container>
 </template>
 
 <script>
-import State from '../components/diagram_components/state.vue'
-import Transition from '../components/diagram_components/transition.vue'
+import State from '../../components/diagram_components/state.vue'
 
 var width = window.innerWidth
 var height = 600
@@ -57,11 +62,15 @@ var startY = 200
 
 export default {
   props: [
-    'stateNumber'
+    'name',
+    'things',
+    'stateSum',
+    'inState',
+    'exitNumber',
+    'scenario'
   ],
   components: {
-    State,
-    Transition
+    State
   },
   data () {
     return {
@@ -76,7 +85,7 @@ export default {
         draggable: true
       },
       hLineConfig: {
-        points: [startX + 80, startY - 40, startX + 80 + (this.number - 1) * 250, startY - 40],
+        points: [startX + 80, startY - 40, startX + 80 + (this.exitNumber - 1) * 250, startY - 40],
         stroke: 'black',
         strokeWidth: 2,
         lineJoin: 'round'
@@ -90,7 +99,7 @@ export default {
     }
   },
   mounted () {
-    for (let index = 0; index < this.number; index++) {
+    for (let index = 0; index < this.exitNumber; index++) {
       this.list.push({
         id: index,
         group1Config: {
@@ -200,6 +209,35 @@ export default {
       this.inputText = ''
       this.component = null
       this.inputShow = false
+    },
+    createScenario () {
+      var scenario = this.scenario
+      var inStateScenario = {}
+      for (let index = 0; index < this.exitNumber; index++) {
+        inStateScenario[this.$refs.eventtxt[index].getStage().getText()] = {}
+        inStateScenario[this.$refs.eventtxt[index].getStage().getText()]['action'] =
+          this.$refs.actiontxt[index].getStage().getText()
+        inStateScenario[this.$refs.eventtxt[index].getStage().getText()]['go_to_state'] =
+           this.$refs.statetxt[index].getStage().getText()
+      }
+      scenario['scenario'] = {}
+      scenario['state' + this.inState] = inStateScenario
+      return scenario
+    },
+    goNextStep: function () {
+      var scenario = this.createScenario()
+      console.log(scenario)
+      if (this.inState < this.stateSum) {
+        this.$router.push({name: 'exit-number',
+          params: { name: this.name,
+            things: this.selectedThings,
+            stateSum: this.stateSum,
+            state: this.inState + 1,
+            scenario: scenario }})
+      } else {
+        this.$router.push({name: 'check-scenario',
+          params: { scenario: scenario }})
+      }
     }
   }
 }
