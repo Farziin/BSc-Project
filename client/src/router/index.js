@@ -9,6 +9,10 @@ import ScenarioNumber from '../pages/scenario-drawer/scenario-number'
 import ExitNumber from '../pages/scenario-drawer/exit-number'
 import DefineScenario from '../pages/scenario-drawer/define-scenario'
 import CheckScenario from '../pages/scenario-drawer/check-scenario'
+import AddDuration from '../pages/scenario-tester/add-duration'
+import AddConditions from '../pages/scenario-tester/add-conditions'
+import ConditionTable from '../pages/scenario-tester/condition-table'
+import PythonCodeShow from '../pages/python-code-show'
 
 Vue.use(Router)
 
@@ -62,6 +66,29 @@ export default new Router({
       path: '/check-scenario',
       name: 'check-scenario',
       component: CheckScenario,
+      props: true
+    },
+    {
+      path: '/add-duration',
+      name: 'add-duration',
+      component: AddDuration
+    },
+    {
+      path: '/add-conditions',
+      name: 'add-conditions',
+      component: AddConditions,
+      props: true
+    },
+    {
+      path: '/condition-table',
+      name: 'condition-table',
+      component: ConditionTable,
+      props: true
+    },
+    {
+      path: '/python-code-show',
+      name: 'python-code-show',
+      component: PythonCodeShow,
       props: true
     }
   ]

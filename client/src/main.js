@@ -10,11 +10,14 @@ import {sync} from 'vuex-router-sync'
 import store from './store/index'
 import VueKonva from 'vue-konva'
 import vueHeadful from 'vue-headful'
+import VueHighlightJS from 'vue-highlight.js'
+import 'highlight.js/styles/default.css'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(VueKonva)
 Vue.component('vue-headful', vueHeadful)
+Vue.use(VueHighlightJS)
 
 sync(store, router)
 

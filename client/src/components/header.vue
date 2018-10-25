@@ -40,12 +40,12 @@ export default {
   },
   methods: {
     addScenario: function () {
-      // if (this.$store.state.token === null) {
-      //   this.modalShow = true
-      // } else {
-      this.$router.push('/scenario-name')
-      // }
-      // TODO
+      if (this.$store.state.token === null) {
+        this.modalShow = true
+      } else {
+        this.$router.push('/scenario-name')
+      }
+      // TODO:
     }
   }
 }

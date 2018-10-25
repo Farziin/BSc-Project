@@ -1,5 +1,6 @@
 <template>
   <b-container fluid>
+    <vue-headful title="نام نساریو"/>
     <header-part></header-part>
     <br/>
     <b-container>

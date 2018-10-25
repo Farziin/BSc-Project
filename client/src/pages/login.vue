@@ -1,5 +1,6 @@
 <template>
   <b-container class="root">
+    <vue-headful title="صفحه ورود"/>
     <b-alert :show="dismissCountDown"
              dismissible
              variant="danger"

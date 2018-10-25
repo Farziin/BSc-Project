@@ -1,5 +1,6 @@
 <template>
   <b-container fluid>
+    <vue-headful title="تعداد خروجی"/>
     <header-part></header-part>
     <br/>
     <b-container>

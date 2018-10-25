@@ -1,7 +1,8 @@
 <template>
   <b-container fluid>
+    <vue-headful title="تعریف سناریو"/>
     <br/>
-    <h4 v-if="inputShow === false">برای تغییر شروط و اعمال، روی مؤلفه موردنظر دو بار کلیک کنید.</h4>
+    <h4 v-if="inputShow === false">برای تغییر رخداد‌ها و اعمال، روی مؤلفه موردنظر دو بار کلیک کنید.</h4>
     <br/>
     <b-container v-if="inputShow">
       <b-form-textarea id="textarea1"
@@ -20,7 +21,7 @@
 
     <!-- diagram part -->
     <v-stage ref="stage" :config="stageConfig">
-      <state :startX="190" :startY="80" stateName="state 1"></state>
+      <state :startX="190" :startY="80" :stateName="'state' + inState"></state>
       <v-layer  ref="layer">
         <v-line :config="hLineConfig"></v-line>
         <v-line :config="vLineConfig"></v-line>
@@ -212,16 +213,21 @@ export default {
     },
     createScenario () {
       var scenario = this.scenario
-      var inStateScenario = {}
+      var inStateScenario = []
       for (let index = 0; index < this.exitNumber; index++) {
-        inStateScenario[this.$refs.eventtxt[index].getStage().getText()] = {}
-        inStateScenario[this.$refs.eventtxt[index].getStage().getText()]['action'] =
+        var inStateScenarioEntry = {}
+        inStateScenarioEntry['event'] =
+          this.$refs.eventtxt[index].getStage().getText()
+        inStateScenarioEntry['action'] =
           this.$refs.actiontxt[index].getStage().getText()
-        inStateScenario[this.$refs.eventtxt[index].getStage().getText()]['go_to_state'] =
+        inStateScenarioEntry['go_to_state'] =
            this.$refs.statetxt[index].getStage().getText()
+        inStateScenario.push(inStateScenarioEntry)
       }
-      scenario['scenario'] = {}
-      scenario['state' + this.inState] = inStateScenario
+      if (!scenario['scenario']) {
+        scenario['scenario'] = {}
+      }
+      scenario['scenario']['state' + this.inState] = inStateScenario
       return scenario
     },
     goNextStep: function () {

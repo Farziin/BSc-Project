@@ -5,7 +5,7 @@
       <b-table striped hover :items="things" :fields="thingsFields"></b-table>
         <b-form-group label="لطفاً اشیاء موردنظر خود را از لیست زیر و با توجه به اطلاعات فوق تکمیل انتخاب کنید:">
           <b-form-checkbox-group stacked  v-for="thing in things" :key="thing.id" v-model="selectedThings">
-            <b-form-checkbox :value="thing._id">{{ thing.name }}</b-form-checkbox>
+            <b-form-checkbox :value="thing">{{ thing.name }}</b-form-checkbox>
           </b-form-checkbox-group>
         </b-form-group>
         <br/>
@@ -17,8 +17,8 @@
 
 <script>
 import HeaderPart from '../../components/header'
-import platformAPI from '../../services/platform_api'
-
+// import platformAPI from '../../services/platform_api'
+import serverAPI from '../../services/server_api'
 export default {
   props: [
     'scenarioName',
@@ -50,9 +50,16 @@ export default {
   },
   created: function () {
     var self = this
-    platformAPI().get('things', {headers: {Authorization: 'Bearer ' + self.$store.state.token}})
+    // platformAPI().get('things', {headers: {Authorization: 'Bearer ' + self.$store.state.token}})
+    //   .then(function (response) {
+    //     self.things = response.data.result.things
+    //   })
+    //   .catch(function (err) {
+    //     console.log('THINGS CANNOT RERTIEVED: ' + err)
+    //   })
+    serverAPI().get('get-things')
       .then(function (response) {
-        self.things = response.data.result.things
+        self.things = response.data
       })
       .catch(function (err) {
         console.log('THINGS CANNOT RERTIEVED: ' + err)

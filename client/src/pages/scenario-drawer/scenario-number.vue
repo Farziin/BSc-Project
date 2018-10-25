@@ -1,5 +1,6 @@
 <template>
   <b-container fluid>
+    <vue-headful title="تعداد حالت‌های سناریو"/>
     <header-part></header-part>
     <br/>
     <b-container>
